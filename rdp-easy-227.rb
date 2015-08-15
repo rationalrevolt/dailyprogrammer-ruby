@@ -38,13 +38,9 @@ class Spiral
     mx,my = mid_point
 
     b = box_number(point)
-
-    return [mx, my] unless b
-    
-    bsp = b ** 2 + 1
-    
     b1 = b + 1
     b2 = b + 2
+    bsp = b ** 2 + 1
 
     x,y = [mx + b/2 + 1, my + b/2]
     
@@ -76,8 +72,6 @@ class Spiral
   end
 
   def box_number point
-    return nil if point == 1
-
     s = Math.sqrt(point).to_i
     if s.even?
       s - 1
