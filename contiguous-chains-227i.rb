@@ -103,19 +103,12 @@ class Grid
 
 end
 
-lines = File::open(ARGV.first) { |f| f.each_line.collect { |l| l.chomp }.to_a }
-max_length = lines.collect { |l| l.length }.max
-input = lines.collect { |l| l.ljust(max_length) }.to_a
+lines = File::open(ARGV.first) do |f|
+  lx = f.each_line
+  w, h = lx.next.chomp.split.map { |v| v.to_i }
+  h.times.collect { lx.next.chomp.ljust(w) }.to_a
+end
 
-grid = Grid.new input
+grid = Grid.new lines
+
 puts grid.find_chains.size
-
-__END__
-xx x xx x  
-x  x xx x  
-xx   xx  x 
-xxxxxxxxx x
-         xx
-xxxxxxxxxxx
- x x x x x 
-  x x x x 
